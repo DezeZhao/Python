@@ -1,0 +1,30 @@
+digraph flowchart {
+	node [fontname=NSimSun shape=box style=rounded]
+	edge [fontname=Kaiti]
+	0 [label="会议"]
+	1 [label="直播会议"]
+	2 [label="直播页面"]
+	a [label="现场会议"]
+	b [label="报名"]
+	i [label="报名"]
+	c [label="选择门票"]
+	d [label="填写需求单"]
+	j [label="填写需求单"]
+	e [label="报名成功" color=red fontcolor=red]
+	f [label="订单页面"]
+	g [label="报名购票成功" color=red fontcolor=red]
+	i -> j
+	j -> f
+	d -> e
+	a -> b
+	i -> f
+	1 -> 2
+	a -> c
+	0 -> 1
+	f -> g
+	b -> e
+	c -> i
+	b -> d
+	0 -> a
+	c -> f [label="已报名"]
+}
