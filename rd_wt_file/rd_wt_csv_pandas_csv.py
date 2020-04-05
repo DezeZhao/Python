@@ -79,7 +79,7 @@ print(type(csv_data))  # <class 'pandas.core.frame.DataFrame'>
 import pandas as pd
 
 data = pd.read_csv('b1.csv')
-print(data['车次']) # 输出某一列值
+# print(data['车次']) # 输出某一列值
 for item in data['车次']:
     if 'G' not in item:
         # print(data[data['车次'].isin([item])].index)
@@ -91,6 +91,8 @@ for item in data['车次']:
         # df1 = df.drop(cols,axis=1) # 删除指定列此处cols为[]list
         # df = df[df['身高'].isin([160])] # 选取出身高等于160 的行
         # df = df[~df['身高'].isin([160])] #取反，得到身高不等于160的行
-data_ = open('./b1_update.csv','w',encoding='utf-8')
+data_ = open('./b1_update.csv','w', newline='')
 df = pd.DataFrame(data) # 将列表数据data转换为DataFrame格式
-df.to_csv(data_) #转换后的数据写入data_ csv文件
+df.to_csv(data_,index=False,encoding="utf-8")
+#转换后的数据写入data_ csv文件  encoding 防止Excel打开乱码
+# 防止读取和写入多空行 在open方法中添加关键字参数newline = ''
