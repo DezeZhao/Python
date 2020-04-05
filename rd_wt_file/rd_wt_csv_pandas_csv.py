@@ -73,15 +73,24 @@ print(csv_data)
 print(type(csv_data))  # <class 'pandas.core.frame.DataFrame'>
 """
 
-"""
-删除指定行
+
+# 删除指定行
+# 并重新写入删选后的数据到csv
 import pandas as pd
 
 data = pd.read_csv('b1.csv')
-print(data['车次'])
+print(data['车次']) # 输出某一列值
 for item in data['车次']:
     if 'G' not in item:
-        print(data[data['车次'].isin([item])].index)
+        # print(data[data['车次'].isin([item])].index)
         data.drop(data[data['车次'].isin([item])].index,inplace=True)
-print(data)
-"""
+        # 这里的inplace表示再排序的时候是否生成一个新的dataframe 结构
+        # drop()方法如果不设置参数inplace=True，则只能在生成的新数据
+        # 块中实现删除效果，而不能删除原有数据块的相应行。
+        # df1 = df.drop([0]) #删除第0行，inplace=True则原数据发生改变
+        # df1 = df.drop(cols,axis=1) # 删除指定列此处cols为[]list
+        # df = df[df['身高'].isin([160])] # 选取出身高等于160 的行
+        # df = df[~df['身高'].isin([160])] #取反，得到身高不等于160的行
+data_ = open('./b1_update.csv','w',encoding='utf-8')
+df = pd.DataFrame(data) # 将列表数据data转换为DataFrame格式
+df.to_csv(data_) #转换后的数据写入data_ csv文件
