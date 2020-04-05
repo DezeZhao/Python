@@ -72,3 +72,16 @@ print(csv_batch_data.shape)  # 2,3
 print(csv_data)
 print(type(csv_data))  # <class 'pandas.core.frame.DataFrame'>
 """
+
+"""
+删除指定行
+import pandas as pd
+
+data = pd.read_csv('b1.csv')
+print(data['车次'])
+for item in data['车次']:
+    if 'G' not in item:
+        print(data[data['车次'].isin([item])].index)
+        data.drop(data[data['车次'].isin([item])].index,inplace=True)
+print(data)
+"""
